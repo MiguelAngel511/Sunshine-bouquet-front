@@ -1,0 +1,67 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<main class="main">
+  <div class="content">
+    <div class="left-side">
+    </div>
+    <div class="divider" role="separator" aria-label="Divider"></div>
+    <div class="right-side">
+      
+      <h1>Lista de Productos</h1>
+
+<!-- Formulario para agregar productos -->
+<form (submit)="addProduct()">
+  <input type="text" placeholder="ID" [(ngModel)]="newProduct.id" name="id" required>
+  <input type="text" placeholder="Nombre" [(ngModel)]="newProduct.name" name="name" required>
+  <input type="text" placeholder="Especie" [(ngModel)]="newProduct.species" name="species" required>
+  <input type="file" (change)="onFileSelected($event)" accept="image/*">
+  <img *ngIf="previewUrl" [src]="previewUrl" alt="Vista previa" width="200">
+  <button (click)="uploadImage()">Subir Imagen</button>
+  <button type="submit">Agregar Producto</button>
+</form>
+
+<!-- Mostrar productos -->
+<table border="1" *ngIf="products.length > 0; else noData">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Species</th>
+    <th>Image</th>
+    <th>Types</th>
+    <th>Qualities</th>
+  </tr>
+  <tr *ngFor="let product of products">
+    <td>{{product.id}}</td>
+    <td>{{product.name}}</td>
+    <td>{{product.species}}</td>
+    <td>{{product.image}}</td>
+    <td>{{product.types}}</td>
+    <td>{{product.qualities}}</td>
+  </tr>
+</table>
+
+
+<ng-template #noData>
+  <p>No hay productos disponibles.</p>
+</ng-template>
+
+    </div>
+  </div>
+</main>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+<router-outlet />
