@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { ProductService } from './services/product.service';
 import { Product } from './models/product';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, HttpClientModule, FormsModule],
+  imports: [RouterOutlet, CommonModule, HttpClientModule, FormsModule,NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
