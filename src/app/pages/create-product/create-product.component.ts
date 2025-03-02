@@ -1,20 +1,19 @@
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
-import { ProductService } from './services/product.service';
-import { Product } from './models/product';
+import { Component } from "@angular/core";
+import { Product } from "../../models/product";
+import { ProductService } from "../../services/product.service";
+import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
+import { RouterOutlet } from "@angular/router";
+
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, HttpClientModule, FormsModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
-})
-export class AppComponent {
-  title = 'sunshine-bouquet-front';
-  products: Product[] = [];
+    selector: 'app-create-product',
+    templateUrl: './create-product.component.html',
+    styleUrls: ['./create-product.component.css'],
+    imports: [RouterOutlet, CommonModule, HttpClientModule, FormsModule],
+  })
+export class CreateProductComponent{
   newProduct: Product = new Product({});
   types: string[]=[]
   qualities:string[]=[]
@@ -22,9 +21,16 @@ export class AppComponent {
   newQualiti:string=""
   selectedFile: any | undefined = undefined;
   previewUrl: ArrayBuffer | string | null = null;
-  
-
   constructor(private productService: ProductService) {}
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => (this.previewUrl = reader.result);
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
   addType() {
     if (this.newType.trim()) { 
       this.types?.push(this.newType);
@@ -43,32 +49,6 @@ export class AppComponent {
   removeQualiti(index:number){
     this.qualities?.splice(index,1);
   }
-
-  ngOnInit() {
-    this.loadProducts();
-  }
-
-  loadProducts() {
-    this.productService.getProducts().subscribe({
-      next: (data) => {
-        this.products = data;
-      },
-      error: (error) => {
-        console.error('Error al obtener productos', error);
-      }
-    });
-  }
-
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0];
-      const reader = new FileReader();
-      reader.onload = (e) => (this.previewUrl = reader.result);
-      reader.readAsDataURL(this.selectedFile);
-    }
-  }
-
   addProduct() {
     this.uploadImage().subscribe({
       next: (imagenResponse:any) =>{
@@ -76,7 +56,7 @@ export class AppComponent {
         
         this.productService.saveProduct(this.newProduct,imagenResponse.image,this.types,this.qualities).subscribe({
           next: (product) => {
-            this.products.push(product);
+
             this.newProduct = new Product({});
           },
           error: (error) => {
@@ -92,7 +72,6 @@ export class AppComponent {
       error: (error) => console.error('Error al subir la imagen', error)
   });
   }
-
   uploadImage(){
     return this.productService.uploadImageProduct(this.selectedFile)
   }

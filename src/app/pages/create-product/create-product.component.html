@@ -1,0 +1,31 @@
+<form (submit)="addProduct()">
+    <input type="text" placeholder="ID" [(ngModel)]="newProduct.id" name="id" required>
+    <input type="text" placeholder="Nombre" [(ngModel)]="newProduct.name" name="name" required>
+    <input type="text" placeholder="Especie" [(ngModel)]="newProduct.species" name="species" required>
+    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+    <img *ngIf="previewUrl" [src]="previewUrl" alt="Vista previa" width="200">
+    <label>Tipos:</label>
+    <input type="text" [(ngModel)]="newType" name="newType" placeholder="Añadir tipo">
+    <button type="button" (click)="addType()">➕ Agregar Tipo</button>
+    
+    <ul>
+      <li *ngFor="let type of types; let i = index">
+        {{ type }}
+        <button type="button" (click)="removeType(i)">❌</button>
+      </li>
+    </ul>
+  
+    <label>Qualities:</label>
+    <input qualiti="text" [(ngModel)]="newQualiti" name="newQualiti" placeholder="Añadir Cualidad">
+    <button qualiti="button" (click)="addQualiti()">➕ Agregar Cualidad</button>
+    
+    <ul>
+      <li *ngFor="let qualiti of qualities; let i = index">
+        {{ qualiti }}
+        <button qualiti="button" (click)="removeQualiti(i)">❌</button>
+      </li>
+    </ul>
+    <button qualiti="submit">Agregar Producto</button>
+  </form>
+
+  <router-outlet />

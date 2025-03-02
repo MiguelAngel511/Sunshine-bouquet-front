@@ -1,0 +1,29 @@
+<div>
+    Productos: 
+<table border="1" *ngIf="products.length > 0; else noData">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Species</th>
+      <th>Types</th>
+      <th>Qualities</th>
+      <th>Image</th>
+    </tr>
+    <tr *ngFor="let product of products">
+      <td>{{product.id}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.species}}</td>
+      <td>{{product.types}}</td>
+      <td>{{product.qualities}}</td>
+      <td>
+        <img [src]="product.image" alt="Product Image" width="100" height="100" />
+      </td>
+    </tr>
+  </table>
+  
+  
+  <ng-template #noData>
+    <p>No hay productos disponibles.</p>
+  </ng-template>
+  <router-outlet />
+</div>
