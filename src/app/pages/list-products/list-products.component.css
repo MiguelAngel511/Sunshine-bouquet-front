@@ -1,0 +1,75 @@
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Espacio para el logo y título */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+}
+
+/* Estilo del logo */
+.logo {
+    max-height: 80px;
+    width: auto;
+}
+
+/* Estilo del título */
+.header h1 {
+    flex: 1;
+    text-align: center;
+    font-size: 24px;
+    margin: 0;
+}
+
+table {
+    width: 100%;
+    max-width: 1200px;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    width: calc(100% / 7);
+    box-sizing: border-box;
+    min-width: 120px;
+}
+
+th {
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+td {
+    text-align: center;
+    word-wrap: break-word;
+}
+
+tr {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+td img {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 5px;
+}
+
+
