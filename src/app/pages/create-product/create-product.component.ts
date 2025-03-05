@@ -22,6 +22,7 @@ export class CreateProductComponent{
   selectedFile: any | undefined = undefined;
   previewUrl: ArrayBuffer | string | null = null;
   successMessage: string = '';
+  errorMessage: string = '';
   constructor(private productService: ProductService) {}
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;

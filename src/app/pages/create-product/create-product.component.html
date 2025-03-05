@@ -1,9 +1,11 @@
-<form (submit)="addProduct()">
+<form (ngSubmit)="addProduct()">
     <input type="text" placeholder="ID" [(ngModel)]="newProduct.id" name="id" required>
     <input type="text" placeholder="Nombre" [(ngModel)]="newProduct.name" name="name" required>
     <input type="text" placeholder="Especie" [(ngModel)]="newProduct.species" name="species" required>
+    
     <input type="file" (change)="onFileSelected($event)" accept="image/*">
     <img *ngIf="previewUrl" [src]="previewUrl" alt="Vista previa" width="200">
+
     <label>Tipos:</label>
     <input type="text" [(ngModel)]="newType" name="newType" placeholder="Añadir tipo">
     <button type="button" (click)="addType()">➕ Agregar Tipo</button>
@@ -14,20 +16,26 @@
         <button type="button" (click)="removeType(i)">❌</button>
       </li>
     </ul>
-  
-    <label>Qualities:</label>
-    <input qualiti="text" [(ngModel)]="newQualiti" name="newQualiti" placeholder="Añadir Cualidad">
-    <button qualiti="button" (click)="addQualiti()">➕ Agregar Cualidad</button>
+
+    <label>Cualidades:</label>
+    <input type="text" [(ngModel)]="newQualiti" name="newQualiti" placeholder="Añadir Cualidad">
+    <button type="button" (click)="addQualiti()">➕ Agregar Cualidad</button>
     
     <ul>
       <li *ngFor="let qualiti of qualities; let i = index">
         {{ qualiti }}
-        <button qualiti="button" (click)="removeQualiti(i)">❌</button>
+        <button type="button" (click)="removeQualiti(i)">❌</button>
       </li>
     </ul>
-    <button type="submit">Agregar Producto</button>
+
+    <!-- Botón corregido para evitar envío automático -->
+    <button type="submit" (click)="$event.preventDefault(); addProduct();">
+      Agregar Producto
+    </button>
+
+  
     <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
     <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-  </form>
+</form>
 
-  <router-outlet />
+<router-outlet />
