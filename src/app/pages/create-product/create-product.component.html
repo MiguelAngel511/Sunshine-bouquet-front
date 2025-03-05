@@ -25,7 +25,9 @@
         <button qualiti="button" (click)="removeQualiti(i)">❌</button>
       </li>
     </ul>
-    <button qualiti="submit">Agregar Producto</button>
+    <button type="submit">Agregar Producto</button>
+    <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
   </form>
 
   <router-outlet />

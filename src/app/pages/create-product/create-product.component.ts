@@ -21,6 +21,7 @@ export class CreateProductComponent{
   newQualiti:string=""
   selectedFile: any | undefined = undefined;
   previewUrl: ArrayBuffer | string | null = null;
+  successMessage: string = '';
   constructor(private productService: ProductService) {}
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -58,6 +59,8 @@ export class CreateProductComponent{
           next: (product) => {
 
             this.newProduct = new Product({});
+            this.successMessage = "✅ ¡Producto agregado con éxito!";
+            setTimeout(() => this.successMessage = '', 3000);
           },
           error: (error) => {
             console.error('Error al crear producto', error);

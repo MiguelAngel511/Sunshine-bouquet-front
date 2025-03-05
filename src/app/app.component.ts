@@ -17,15 +17,31 @@ export class AppComponent {
   title = 'sunshine-bouquet-front';
   products: Product[] = [];
   newProduct: Product = new Product({});
+  tempProduct: Product = new Product({});
   types: string[]=[]
   qualities:string[]=[]
   newType:string=""
   newQualiti:string=""
   selectedFile: any | undefined = undefined;
   previewUrl: ArrayBuffer | string | null = null;
+  successMessage: string = '';
   
 
   constructor(private productService: ProductService) {}
+  ngOnInit() {
+    this.loadProducts();
+  }
+
+  loadProducts() {
+    this.productService.getProducts().subscribe({
+      next: (data) => {
+        this.products = data;
+      },
+      error: (error) => {
+        console.error('Error al obtener productos', error);
+      }
+    });
+  }
   addType() {
     if (this.newType.trim()) { 
       this.types?.push(this.newType);
@@ -45,22 +61,7 @@ export class AppComponent {
     this.qualities?.splice(index,1);
   }
 
-  ngOnInit() {
-    this.loadProducts();
-  }
-
-  loadProducts() {
-    this.productService.getProducts().subscribe({
-      next: (data) => {
-        this.products = data;
-      },
-      error: (error) => {
-        console.error('Error al obtener productos', error);
-      }
-    });
-  }
-
-  onFileSelected(event: Event) {
+ onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
@@ -79,6 +80,8 @@ export class AppComponent {
           next: (product) => {
             this.products.push(product);
             this.newProduct = new Product({});
+            this.successMessage = "✅ ¡Producto agregado con éxito!";
+            setTimeout(() => this.successMessage = '', 3000);
           },
           error: (error) => {
             console.error('Error al crear producto', error);
