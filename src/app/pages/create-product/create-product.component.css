@@ -1,3 +1,39 @@
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Espacio para el logo y título */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+}
+
+/* Estilo del logo */
+.logo {
+    max-height: 80px;
+    width: auto;
+}
+
+/* Estilo del título */
+.header h1 {
+    flex: 1;
+    text-align: center;
+    font-size: 24px;
+    margin: 0;
+}
+
 form {
     display: grid;
     grid-template-columns: 1fr 2fr;

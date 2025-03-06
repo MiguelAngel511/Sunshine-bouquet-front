@@ -3,9 +3,22 @@
        alt="Logo de Sunshine Bouquet" 
        class="logo">
 </div>
-<div>
-  <h1>Lista De Productos :</h1> 
-<table border="1" *ngIf="products.length > 0; else noData">
+
+<div class="table-container">
+  <h1>Lista De Productos :</h1>
+
+  <table border="1" *ngIf="filteredProducts.length > 0; else noData">
+    <!-- Fila de filtros dentro de la tabla -->
+    <tr class="filter-row">
+      <td></td>
+      <td><input type="text" [formControl]="nameFilter" class="filter-input" placeholder="Filtrar por Nombre"></td>
+      <td><input type="text" [formControl]="speciesFilter" class="filter-input" placeholder="Filtrar por Especie"></td>
+      <td><input type="text" [formControl]="typesFilter" class="filter-input" placeholder="Filtrar por Tipo"></td>
+      <td><input type="text" [formControl]="qualitiesFilter" class="filter-input" placeholder="Filtrar por Calidad"></td>
+      <td></td> <!-- Espacio para la imagen -->
+    </tr>
+
+    <!-- Encabezados de la tabla -->
     <tr>
       <th>Id</th>
       <th>Name</th>
@@ -14,7 +27,9 @@
       <th>Qualities</th>
       <th>Image</th>
     </tr>
-    <tr *ngFor="let product of products">
+
+    <!-- Datos -->
+    <tr *ngFor="let product of filteredProducts">
       <td>{{product.id}}</td>
       <td>{{product.name}}</td>
       <td>{{product.species}}</td>
@@ -25,10 +40,8 @@
       </td>
     </tr>
   </table>
-  
-  
+
   <ng-template #noData>
     <p>No hay productos disponibles.</p>
   </ng-template>
-  <router-outlet />
 </div>
