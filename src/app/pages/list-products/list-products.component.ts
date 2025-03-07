@@ -29,8 +29,8 @@ loadProducts() {
         next: (data) => {
             console.log("Data cargada:", data);
             this.products = data;
-            this.filteredProducts = data; // Inicializar con los productos cargados
-            this.applyFilters(); // Ahora sí aplicamos filtros
+            this.filteredProducts = data; 
+            this.applyFilters(); 
         },
         error: (error) => {
             console.error('Error al obtener productos', error);

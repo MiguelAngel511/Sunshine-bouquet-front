@@ -64,7 +64,6 @@ th {
     background-color: #f4f4f4;
 }
 
-/* Asegurar que los filtros estén dentro de la tabla */
 .filter-row {
     background-color: #f9f9f9;
 }
@@ -79,7 +78,6 @@ th {
     box-sizing: border-box;
 }
 
-/* Ajuste del tamaño de la imagen dentro de la tabla */
 td img {
     max-width: 100px;
     max-height: 100px;
