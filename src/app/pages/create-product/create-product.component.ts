@@ -61,6 +61,8 @@ export class CreateProductComponent{
 
             this.newProduct = new Product({});
             this.successMessage = "✅ ¡Producto agregado con éxito!";
+            this.types = []
+            this.qualities = []
             setTimeout(() => this.successMessage = '', 3000);
           },
           error: (error) => {

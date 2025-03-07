@@ -3,14 +3,13 @@ import { Product } from "../../models/product";
 import { ProductService } from "../../services/product.service";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
-import { RouterOutlet } from "@angular/router";
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 @Component({
     selector: 'app-list-product',
     standalone: true, 
     templateUrl: './list-products.component.html',
     styleUrls: ['./list-products.component.css'],
-    imports: [RouterOutlet, CommonModule, HttpClientModule, ReactiveFormsModule],
+    imports: [CommonModule, HttpClientModule, ReactiveFormsModule],
   })
 export class ListProductsComponent{
     products: Product[] = [];

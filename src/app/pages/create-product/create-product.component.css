@@ -35,10 +35,10 @@ div {
 }
 
 form {
-    display: grid;
+    display: grid;  
     grid-template-columns: 1fr 2fr;
     gap: 20px;
-    max-width: 800px;
+    max-width: 1000px;
     margin: auto;
     padding: 20px;
     border: 1px solid #ccc;
